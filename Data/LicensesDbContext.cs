@@ -5,10 +5,9 @@ namespace OSSApi.Data;
 
 public class LicensesDbContext : DbContext
 {
-    public LicensesDbContext(DbContextOptions<LicensesDbContext> licenses) : base(licenses)
+    public LicensesDbContext(DbContextOptions<LicensesDbContext> options) : base(options)
     {
-        
     }
-    
-    public DbSet<Licenses> licenses { get; set; }
+
+    public DbSet<Licenses> Licenses { get; set; }
 }

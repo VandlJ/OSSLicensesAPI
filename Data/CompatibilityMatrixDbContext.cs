@@ -5,12 +5,11 @@ namespace OSSApi.Data;
 
 public class CompatibilityMatrixDbContext : DbContext
 {
-    public CompatibilityMatrixDbContext(DbContextOptions<CompatibilityMatrixDbContext> compatibilityMatrix) : base(compatibilityMatrix)
+    public CompatibilityMatrixDbContext(DbContextOptions<CompatibilityMatrixDbContext> options) : base(options)
     {
-        
     }
-    
-    public DbSet<CompatibilityMatrix> compatibility_matrix { get; set; }
+
+    public DbSet<CompatibilityMatrix> CompatibilityMatrices { get; set; }
 }
 
 

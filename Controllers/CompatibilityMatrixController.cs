@@ -14,95 +14,36 @@ namespace OSSApi.Controllers
     [ApiController]
     public class CompatibilityMatrixController : ControllerBase
     {
-        private readonly CompatibilityMatrixDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public CompatibilityMatrixController(CompatibilityMatrixDbContext context)
+        public CompatibilityMatrixController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/CompatibilityMatrix
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<CompatibilityMatrix>>> GetcompatibilityMatrix()
+        // GET: api/CompatibilityMatrix/CheckCompatibility?license1=NázevLicence1&license2=NázevLicence2
+        [HttpGet("CheckCompatibility")]
+        public async Task<ActionResult<bool>> CheckCompatibility(string license1, string license2)
         {
-            return await _context.compatibility_matrix.ToListAsync();
-        }
+            var compatibility = await _context.compatibility_matrix
+                .Join(_context.licenses,
+                    cm => cm.License_id_1,
+                    l => l.Id,
+                    (cm, l1) => new { CompatibilityMatrix = cm, License1 = l1 })
+                .Join(_context.licenses,
+                    cm => cm.CompatibilityMatrix.License_id_2,
+                    l => l.Id,
+                    (cm, l2) => new { cm.CompatibilityMatrix, cm.License1, License2 = l2 })
+                .Where(x => x.License1.Name == license1 && x.License2.Name == license2)
+                .Select(x => x.CompatibilityMatrix.Compatible)
+                .FirstOrDefaultAsync();
 
-        // GET: api/CompatibilityMatrix/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<CompatibilityMatrix>> GetCompatibilityMatrix(int id)
-        {
-            var compatibilityMatrix = await _context.compatibility_matrix.FindAsync(id);
-
-            if (compatibilityMatrix == null)
+            if (compatibility == null)
             {
-                return NotFound();
+                return false;
             }
 
-            return compatibilityMatrix;
-        }
-
-        // PUT: api/CompatibilityMatrix/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCompatibilityMatrix(int id, CompatibilityMatrix compatibilityMatrix)
-        {
-            if (id != compatibilityMatrix.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(compatibilityMatrix).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CompatibilityMatrixExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/CompatibilityMatrix
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<CompatibilityMatrix>> PostCompatibilityMatrix(CompatibilityMatrix compatibilityMatrix)
-        {
-            _context.compatibility_matrix.Add(compatibilityMatrix);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCompatibilityMatrix", new { id = compatibilityMatrix.Id }, compatibilityMatrix);
-        }
-
-        // DELETE: api/CompatibilityMatrix/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCompatibilityMatrix(int id)
-        {
-            var compatibilityMatrix = await _context.compatibility_matrix.FindAsync(id);
-            if (compatibilityMatrix == null)
-            {
-                return NotFound();
-            }
-
-            _context.compatibility_matrix.Remove(compatibilityMatrix);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool CompatibilityMatrixExists(int id)
-        {
-            return _context.compatibility_matrix.Any(e => e.Id == id);
+            return compatibility;
         }
     }
 }

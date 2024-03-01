@@ -14,9 +14,9 @@ namespace OSSApi.Controllers
     [ApiController]
     public class LicensesController : ControllerBase
     {
-        private readonly LicensesDbContext _context;
-
-        public LicensesController(LicensesDbContext context)
+        private readonly ApplicationDbContext _context;
+        
+        public LicensesController(ApplicationDbContext context)
         {
             _context = context;
         }

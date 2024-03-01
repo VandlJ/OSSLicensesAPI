@@ -16,6 +16,9 @@ builder.Services.AddDbContext<CompatibilityMatrixDbContext>(o =>
 builder.Services.AddDbContext<LicensesDbContext>(o => 
     o.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddDbContext<ApplicationDbContext>(o =>
+    o.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
