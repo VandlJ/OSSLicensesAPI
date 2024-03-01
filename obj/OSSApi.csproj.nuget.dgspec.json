@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\janva\\OSSApi\\OSSApi.csproj": {}
+    "/home/vandl/Desktop/Git/OSSLicensesAPI/OSSApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\janva\\OSSApi\\OSSApi.csproj": {
+    "/home/vandl/Desktop/Git/OSSLicensesAPI/OSSApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\janva\\OSSApi\\OSSApi.csproj",
+        "projectUniqueName": "/home/vandl/Desktop/Git/OSSLicensesAPI/OSSApi.csproj",
         "projectName": "OSSApi",
-        "projectPath": "C:\\Users\\janva\\OSSApi\\OSSApi.csproj",
-        "packagesPath": "C:\\Users\\janva\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\janva\\OSSApi\\obj\\",
+        "projectPath": "/home/vandl/Desktop/Git/OSSLicensesAPI/OSSApi.csproj",
+        "packagesPath": "/home/vandl/.nuget/packages/",
+        "outputPath": "/home/vandl/Desktop/Git/OSSLicensesAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\janva\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/vandl/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -43,6 +43,20 @@
               "version": "[8.0.2, )"
             },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.2, )"
             },
@@ -82,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
