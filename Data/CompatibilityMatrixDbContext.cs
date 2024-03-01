@@ -10,7 +10,7 @@ public class CompatibilityMatrixDbContext : DbContext
         
     }
     
-    public DbSet<CompatibilityMatrix> compatibilityMatrix { get; set; }
+    public DbSet<CompatibilityMatrix> compatibility_matrix { get; set; }
 }
 
 

@@ -20,7 +20,7 @@ namespace OSSApi.Controllers
         {
             _context = context;
         }
-
+        
         // GET: api/Licenses
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Licenses>>> Getlicenses()
