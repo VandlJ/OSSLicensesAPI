@@ -9474,19 +9474,19 @@
     ]
   },
   "packageFolders": {
-    "/home/vandl/.nuget/packages/": {}
+    "/Users/vandl/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/vandl/Desktop/Git/OSSLicensesAPI/OSSApi.csproj",
+      "projectUniqueName": "/Users/vandl/Desktop/git/OSSLicensesAPI/OSSApi.csproj",
       "projectName": "OSSApi",
-      "projectPath": "/home/vandl/Desktop/Git/OSSLicensesAPI/OSSApi.csproj",
-      "packagesPath": "/home/vandl/.nuget/packages/",
-      "outputPath": "/home/vandl/Desktop/Git/OSSLicensesAPI/obj/",
+      "projectPath": "/Users/vandl/Desktop/git/OSSLicensesAPI/OSSApi.csproj",
+      "packagesPath": "/Users/vandl/.nuget/packages/",
+      "outputPath": "/Users/vandl/Desktop/git/OSSLicensesAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/vandl/.nuget/NuGet/NuGet.Config"
+        "/Users/vandl/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -9568,7 +9568,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
