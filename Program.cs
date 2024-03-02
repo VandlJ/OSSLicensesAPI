@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using OSSApi.Data;  
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,13 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddDbContext<CompatibilityMatrixDbContext>(o => 
-    o.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-
-builder.Services.AddDbContext<LicensesDbContext>(o => 
-    o.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddDbContext<ApplicationDbContext>(o =>
     o.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
