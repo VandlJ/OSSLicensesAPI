@@ -17,7 +17,7 @@ This project is a simple REST API for managing software licenses and their compa
 
 1. Open a terminal or command prompt in the project directory.
 2. Run the application using the `dotnet run` command.
-3. If everything goes well, the API should start running at `https://localhost:5001` (for development mode).
+3. If everything goes well, the API should start running at `https://localhost:5191` (for development mode).
 
 ## Usage
 
