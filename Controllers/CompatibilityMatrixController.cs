@@ -15,6 +15,22 @@ namespace OSSApi.Controllers
             _context = context;
         }
 
+        // POST: api/CompatibilityMatrix/CheckCompatibility?license1=NázevLicence1&license2=NázevLicence2
+        [HttpPost("CheckCompatibility3")]
+        public async Task<ActionResult<string>> CheckCompatibility3(InLicenses license)
+        {
+            var compatibility = await _context.license_compatibility
+                .Where(x => 
+                    (x.License1 == license.Name1 && x.License2 == license.Name2) ||
+                    (x.License1 == license.Name2 && x.License2 == license.Name1))
+                .Select(x => x.Compatibility)
+                .FirstOrDefaultAsync();
+
+            return compatibility ?? ""; // Pokud není nalezena žádná shoda, vrátí se prázdný řetězec
+        }
+
+
+        
         // GET: api/CompatibilityMatrix/CheckCompatibility?license1=NázevLicence1&license2=NázevLicence2
         [HttpGet("CheckCompatibility")]
         public async Task<ActionResult<bool>> CheckCompatibility(string license1, string license2)

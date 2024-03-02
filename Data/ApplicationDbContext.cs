@@ -9,4 +9,5 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<CompatibilityMatrix> compatibility_matrix { get; set; }
     public DbSet<Licenses> licenses { get; set; }
+    public DbSet<LicenseCompatibility> license_compatibility { get; set; }
 }
