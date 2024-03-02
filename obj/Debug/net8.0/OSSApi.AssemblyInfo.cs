@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OSSApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec65c2eaf9b01434d5d75ec9434c506a342c7e72")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+678ab70aa11b6f9066b69284c5acb111a0ad70e5")]
 [assembly: System.Reflection.AssemblyProductAttribute("OSSApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OSSApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
