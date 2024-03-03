@@ -9,7 +9,22 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(o =>
-    o.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    if (connectionString != null)
+    {
+        o.UseMySQL(connectionString);
+    }
+    else
+    {
+        // Použití výchozího připojení
+        var defaultConnectionString = "DefaultConnection string goes here";
+        o.UseMySQL(defaultConnectionString);
+        
+        // Nebo vyvolání výjimky
+        throw new Exception("DefaultConnection is not configured");
+    }
+});
 
 var app = builder.Build();
 
