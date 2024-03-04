@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OSSApi.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OSSApi.Controllers
 {
@@ -24,8 +21,7 @@ namespace OSSApi.Controllers
         {
             var compatibility = await _context.license_compatibility
                 .Where(x => 
-                    (x.License1 == license.Name1 && x.License2 == license.Name2) ||
-                    (x.License1 == license.Name2 && x.License2 == license.Name1))
+                    (x.License1 == license.Name1 && x.License2 == license.Name2))
                 .Select(x => x.Compatibility)
                 .FirstOrDefaultAsync();
 
@@ -38,8 +34,7 @@ namespace OSSApi.Controllers
         {
             var compatibility = await _context.license_compatibility
                 .Where(x => 
-                    (x.License1 == license1 && x.License2 == license2) ||
-                    (x.License1 == license2 && x.License2 == license1))
+                    (x.License1 == license1 && x.License2 == license2))
                 .Select(x => x.Compatibility)
                 .FirstOrDefaultAsync();
 
