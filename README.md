@@ -1,29 +1,53 @@
-# OSSLicensesAPI
+# README
 
-This project is a simple REST API for managing software licenses and their compatibility.
+This C# project is a RESTful API designed to manage and query compatibility data between software licenses. It utilizes ASP.NET Core framework for building web applications and Entity Framework Core for database operations.
 
-## Installation
+## Overview
 
-1. First, clone this repository to your local machine.
-2. Open the project in your favorite development environment.
-3. Make sure you have the .NET SDK and MySQL installed on your computer.
+The API includes functionality for checking compatibility between two licenses, retrieving unique license names, and managing license compatibility records. The compatibility data is stored in a MySQL database.
 
-## Configuration
+## Database Setup
 
-1. Check the `appsettings.json` file in the project and ensure you have the correct connection to the MySQL database under the "DefaultConnection" key.
-2. Create the necessary database in MySQL and make sure you have properly configured access credentials.
+The MySQL database is used to store license compatibility data. The database schema includes a table named `license_compatibility` with columns for the first license (`License1`), the second license (`License2`), and the compatibility status (`Compatibility`). The database is populated using a Python script (`populate_database.py`) that reads data from a CSV file (`matrix.csv`) and inserts it into the `license_compatibility` table.
 
-## Running
+## API Endpoints
 
-1. Open a terminal or command prompt in the project directory.
-2. Run the application using the `dotnet run` command.
-3. If everything goes well, the API should start running at `https://localhost:5191` (for development mode).
+### Check Compatibility
+
+- **POST** `/api/CompatibilityMatrix/CheckCompatibility`: 
+  - This endpoint accepts input parameters representing two licenses (`Name1` and `Name2`) and returns the compatibility status between them.
+
+- **GET** `/api/CompatibilityMatrix/CheckCompatibility`: 
+  - This endpoint accepts query parameters representing two license names (`license1` and `license2`) and returns the compatibility status between them.
+
+### Get Unique License Names
+
+- **GET** `/api/CompatibilityMatrix/GetLicenses`: 
+  - This endpoint retrieves a list of unique license names stored in the database.
+
+### Swagger UI
+
+The API is documented using Swagger/OpenAPI specification and can be explored interactively in a web browser by accessing the following URL: [http://localhost:5191/swagger](http://localhost:5191/swagger).
+
+## Project Structure
+
+- `Program.cs`: Configures the application and sets up the HTTP request pipeline.
+- `InLicenses.cs`: Defines the input model for licenses.
+- `LicenseCompatibility.cs`: Defines the model for license compatibility records.
+- `ApplicationDbContext.cs`: Represents the database context for Entity Framework Core.
+- `CompatibilityMatrixController.cs`: Implements the API endpoints for license compatibility management.
+- `populate_database.py`: Python script to populate the MySQL database with license compatibility data from a CSV file.
 
 ## Usage
 
-1. Explore available endpoints using the Swagger interface available at `https://localhost:5001/swagger`.
-2. The API offers endpoints for working with licenses (`/api/licenses`) and for checking compatibility between licenses (`/api/compatibilitymatrix`).
+To use the API:
+1. Set up a MySQL database and configure the connection string in `appsettings.json`.
+2. Run the Python script `populate_database.py` to populate the database with license compatibility data.
+3. Run the C# project to start the API.
+4. Explore the API endpoints and interact with them using Swagger UI.
 
-## Additional Information
+## Notes
 
-This project uses ASP.NET Core and Entity Framework Core technologies for working with the web interface and MySQL database.
+- This project demonstrates how to build a RESTful API using ASP.NET Core, Entity Framework Core, and MySQL database.
+- The Python script `populate_database.py` is provided as an example of how to automate the process of populating the database with data from a CSV file.
+- For more information on configuring and using Swagger/OpenAPI with ASP.NET Core, refer to [Swashbuckle documentation](https://github.com/domaindrivendev/Swashbuckle.AspNetCore).
