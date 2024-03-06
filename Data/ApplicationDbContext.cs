@@ -1,13 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using OSSApi.Models;
 
+// Represents the application's database context
 public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
     }
 
-    public DbSet<CompatibilityMatrix> compatibility_matrix { get; set; }
-    public DbSet<Licenses> licenses { get; set; }
+    // Represents the DbSet for the LicenseCompatibility entity
     public DbSet<LicenseCompatibility> license_compatibility { get; set; }
 }

@@ -1,7 +1,12 @@
-﻿namespace OSSApi.Models;
-
-public class InLicenses
+﻿namespace OSSApi.Models
 {
-    public string? Name1 { get; set; }
-    public string? Name2 { get; set; }
+    // Represents input model for licenses
+    public class InLicenses
+    {
+        // Represents the name of the first license
+        public string? Name1 { get; set; }
+        
+        // Represents the name of the second license
+        public string? Name2 { get; set; }
+    }
 }

@@ -1,13 +1,13 @@
 import csv
 import mysql.connector
 
-# Cesta k souboru CSV
+# Path to the CSV file
 csv_file = 'matrix.csv'
 
-# Inicializace prázdné matice
+# Initialize an empty matrix
 matrix = []
 
-# Načtení dat ze souboru CSV a vytvoření matice
+# Read data from the CSV file and create a matrix
 with open(csv_file, newline='') as file:
     reader = csv.reader(file)
     for row in reader:
@@ -16,25 +16,25 @@ with open(csv_file, newline='') as file:
             matrix_row.append(item)
         matrix.append(matrix_row)
 
-# Vytisknutí matice (pro kontrolu)
+# Print the matrix (for verification)
 for row in matrix:
     print(row)
 
 
-# Připojení k databázi MySQL
+# Connect to the MySQL database
 db = mysql.connector.connect(
-  host="sql.endora.cz",
-  port="3313",
-  user="ossdbjecoolnet",
-  password="Admin123",
-  database="licenses"
+    host="sql.endora.cz",
+    port="3313",
+    user="ossdbjecoolnet",
+    password="Admin123",
+    database="licenses"
 )
 
 cursor = db.cursor()
 
-# Vložení dat z matice do databáze
+# Insert data from the matrix into the database
 
-okay = 1
+insert_number = 1
 
 for i in range(1, len(matrix)):
     license1 = matrix[i][0]
@@ -44,10 +44,9 @@ for i in range(1, len(matrix)):
         if compatibility != "":
             cursor.execute("INSERT INTO license_compatibility (license1, license2, compatibility) VALUES (%s, %s, %s)", (license1, license2, compatibility))
             # print("License1: %s, License2: %s, Compatibility: %s" % (license1, license2, compatibility))
-            print(okay)
-            okay += 1
+            print("okay")
+            insert_number += 1
 
-# Potvrzení změn a uzavření spojení
+# Commit the changes and close the connection
 db.commit()
 db.close()
-
