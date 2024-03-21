@@ -31,17 +31,32 @@ namespace OSSApi.Controllers
 
         // GET: api/CompatibilityMatrix/CheckCompatibility
         [HttpGet("CheckCompatibility")]
-        public async Task<ActionResult<string>> CheckCompatibility3(string license1, string license2)
+        public async Task<ActionResult<CompatibilityResponseModel>> CheckCompatibility(string license1, string license2)
         {
             // Retrieve compatibility for the provided licenses from the database
-            var compatibility = await _context.license_compatibility
-                .Where(x => 
-                    (x.License1 == license1 && x.License2 == license2))
-                .Select(x => x.Compatibility)
+            var compatibilityResult = await _context.license_compatibility
+                .Where(x => (x.License1 == license1 && x.License2 == license2) || (x.License1 == license2 && x.License2 == license1))
                 .FirstOrDefaultAsync();
 
-            return compatibility ?? ""; // Return compatibility or an empty string if not found
-        }
+            if (compatibilityResult == null)
+            {
+                return NotFound();
+            }
+
+            // Create and return the response model with the compatibility result
+            var responseModel = new CompatibilityResponseModel
+            {
+                CompatibilityResult = new CompatibilityResultE
+                {
+                    Yes = compatibilityResult.Compatibility == "Yes",
+                    No = compatibilityResult.Compatibility == "No",
+                    Same = compatibilityResult.Compatibility == "Same",
+                    Unknown = compatibilityResult.Compatibility == "Unknown" || compatibilityResult.Compatibility == ""
+                }
+            };
+
+            return responseModel;
+        }   
         
         // GET: api/CompatibilityMatrix/GetLicenses
         [HttpGet("GetLicenses")]
