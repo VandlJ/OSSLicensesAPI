@@ -14,16 +14,13 @@ The MySQL database is used to store license compatibility data. The database sch
 
 ### Check Compatibility
 
-- **POST** `/api/CompatibilityMatrix/CheckCompatibility`: 
-  - This endpoint accepts input parameters representing two licenses (`Name1` and `Name2`) and returns the compatibility status between them.
-
-- **GET** `/api/CompatibilityMatrix/CheckCompatibility`: 
-  - This endpoint accepts query parameters representing two license names (`license1` and `license2`) and returns the compatibility status between them.
+- **GET** `/api/CompatibilityMatrix/CheckCompatibility`:
+  - This endpoint accepts query parameters representing two license names (`license1` and `license2`) and returns the compatibility result as a `CompatibilityResponseModel` JSON object.
 
 ### Get Unique License Names
 
-- **GET** `/api/CompatibilityMatrix/GetLicenses`: 
-  - This endpoint retrieves a list of unique license names stored in the database.
+- **GET** `/api/CompatibilityMatrix/GetLicenses`:
+  - This endpoint retrieves a list of unique license names stored in the database and returns them as a JSON array of strings.
 
 ### Swagger UI
 
