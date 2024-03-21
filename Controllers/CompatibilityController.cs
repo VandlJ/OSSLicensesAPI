@@ -29,20 +29,34 @@ namespace OSSApi.Controllers
                 return NotFound();
             }
 
+            // Determine the enum value based on the compatibility string
+            CompatibilityResultE resultEnum;
+            if (compatibilityResult.Compatibility == "Yes")
+            {
+                resultEnum = CompatibilityResultE.Yes;
+            }
+            else if (compatibilityResult.Compatibility == "No")
+            {
+                resultEnum = CompatibilityResultE.No;
+            }
+            else if (compatibilityResult.Compatibility == "Same")
+            {
+                resultEnum = CompatibilityResultE.Same;
+            }
+            else
+            {
+                // Treat any other result as Unknown
+                resultEnum = CompatibilityResultE.Unknown;
+            }
+
             // Create and return the response model with the compatibility result
             var responseModel = new CompatibilityResponseModel
             {
-                CompatibilityResult = new CompatibilityResultE
-                {
-                    Yes = compatibilityResult.Compatibility == "Yes",
-                    No = compatibilityResult.Compatibility == "No",
-                    Same = compatibilityResult.Compatibility == "Same",
-                    Unknown = compatibilityResult.Compatibility == "Unknown" || compatibilityResult.Compatibility == ""
-                }
+                CompatibilityResult = resultEnum
             };
 
             return responseModel;
-        }   
+        }
         
         // GET: api/CompatibilityMatrix/GetLicenses
         [HttpGet("GetLicenses")]

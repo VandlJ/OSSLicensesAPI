@@ -5,11 +5,27 @@ namespace OSSApi.Models
         public CompatibilityResultE? CompatibilityResult { get; set; }
     }
 
-    public class CompatibilityResultE
+    // This enum is defined similarly to the screenshot provided
+    public enum CompatibilityResultE
     {
-        public bool Yes { get; set; }
-        public bool No { get; set; }
-        public bool Same { get; set; }
-        public bool Unknown { get; set; }
+        /// <summary>
+        /// Compatible license result
+        /// </summary>
+        Yes,
+        
+        /// <summary>
+        /// Incompatible licenses
+        /// </summary>
+        No,
+        
+        /// <summary>
+        /// Same licenses, thus compatible
+        /// </summary>
+        Same,
+        
+        /// <summary>
+        /// We do not know ...
+        /// </summary>
+        Unknown
     }
 }
